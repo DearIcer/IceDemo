@@ -25,7 +25,7 @@ void UAlsAnimationInstance::NativeBeginPlay()
 {
 	check(IsValid(Settings));
 	check(IsValid(Character));
-
+	
 	Character->GetCapsuleComponent()->TransformUpdated.AddWeakLambda(
 		this, [&bJustTeleported = bJustTeleported](USceneComponent*, const EUpdateTransformFlags, const ETeleportType TeleportType)
 		{
@@ -165,14 +165,14 @@ void UAlsAnimationInstance::RefreshView(const float DeltaTime)
 	// you to keep the view responsive but still smoothly blend from left to right or right to left.
 
 	ViewState.SmoothYawAmount = (ViewState.SmoothYawAngle / 180.0f + 1.0f) * 0.5f;
-	ViewState.SmoothYawLeftAmount = FMath::GetMappedRangeValueClamped({0.0f, 180.0f}, {0.5f, 0.0f},
+	ViewState.SmoothYawLeftAmount = FMath::GetMappedRangeValueClamped(FVector2D{0.0f, 180.0f}, {0.5f, 0.0f},
 	                                                                  FMath::Abs(ViewState.SmoothYawAngle));
-	ViewState.SmoothYawRightAmount = FMath::GetMappedRangeValueClamped({0.0f, 180.0f}, {0.5f, 1.0f},
+	ViewState.SmoothYawRightAmount = FMath::GetMappedRangeValueClamped(FVector2D{0.0f, 180.0f}, {0.5f, 1.0f},
 	                                                                   FMath::Abs(ViewState.SmoothYawAngle));
 
 	if (!RotationMode.IsVelocityDirection())
 	{
-		ViewState.PitchAmount = FMath::GetMappedRangeValueClamped({-90.0f, 90.0f}, {1.0f, 0.0f}, ViewState.PitchAngle);
+		ViewState.PitchAmount = FMath::GetMappedRangeValueClamped(FVector2D{-90.0f, 90.0f}, {1.0f, 0.0f}, ViewState.PitchAngle);
 	}
 
 	const auto AimAllowedAmount{1.0f - GetCurveValueClamped01(UAlsConstants::AimBlockCurve())};
@@ -202,8 +202,12 @@ void UAlsAnimationInstance::RefreshLocomotion(const float DeltaTime)
 		// Get the delta between character rotation and current input yaw angle and map it to a range from
 		// 0 to 1. This value is used in the aiming to make the character look toward the current input.
 
+		// const auto InputYawAngle{
+		// 	FRotator::NormalizeAxis(Character->GetLocomotionState().InputYawAngle - Character->GetLocomotionState().Rotation.Yaw)
+		// };
 		const auto InputYawAngle{
-			FRotator::NormalizeAxis(Character->GetLocomotionState().InputYawAngle - Character->GetLocomotionState().Rotation.Yaw)
+			static_cast<float>(FRotator::NormalizeAxis(
+				Character->GetLocomotionState().InputYawAngle - Character->GetLocomotionState().Rotation.Yaw))
 		};
 
 		const auto InputYawAmount{(InputYawAngle / 180.0f + 1.0f) * 0.5f};
