@@ -1,0 +1,8 @@
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLuaExtensions\LuaSocket\Intermediate\Build\Win64\UE4Editor\Development\LuaSocket\Definitions.LuaSocket.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLuaExtensions\LuaSocket\Source\src\luasocket.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLua\Source\UnLua\Public\lua.hpp
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLua\Source\ThirdParty\Lua\lua-5.4.3\src\lua.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLua\Source\ThirdParty\Lua\lua-5.4.3\src\luaconf.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLua\Source\ThirdParty\Lua\lua-5.4.3\src\lualib.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLua\Source\ThirdParty\Lua\lua-5.4.3\src\lauxlib.h
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLuaExtensions\LuaSocket\Source\src\compat.h

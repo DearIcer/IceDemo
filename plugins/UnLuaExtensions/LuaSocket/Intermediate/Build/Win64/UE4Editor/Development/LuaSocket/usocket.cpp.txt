@@ -1,0 +1,1 @@
+F:\UE5.2Project\UnLua-2.3.6\Plugins\UnLuaExtensions\LuaSocket\Intermediate\Build\Win64\UE4Editor\Development\LuaSocket\Definitions.LuaSocket.h
